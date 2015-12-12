@@ -1,0 +1,54 @@
+<div class="container">
+	<div class="new_order" ng-controller="ordersController">
+		<div class="row">
+			<div class="col-sm-9 col-sm-offset-2">
+					<h1>Customers and Orders - Full Mean</h1>
+
+					<h4> Add an order</h4>
+
+				<form class="form form-inline">
+					<div class="form-group">
+						<select class="form-control" ng-model="newOrder.customer">
+							<option ng-repeat="customer in customers track by $index" value="{{customer._id}}">{{customer.fullname}}</option>
+						</select>
+
+						<select class="form-control" ng-model="newOrder.product">
+							<option ng-repeat="product in products" value={{product._id}} >{{product.product}}</option>
+						</select>
+						<select class="form-control" ng-model="newOrder.quantity">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select>
+					<button class="btn btn-primary" ng-click="createOrder(newOrder)">AddOrder</button>
+				</div>
+				</form>
+				<table class="table table-highlight">
+					<h3>Orders</h3>
+					<thead>
+						<th>Customer</th>
+						<th>Product</th>
+						<th>Quantity</th>
+						<th>Total</th>
+						<th>Date</th>
+						<th>Actions</th>
+						
+					</thead>
+					<tbody>
+						<tr ng-repeat="order in orders track by $index">
+							<td ng-bind="order.customername"></td>
+							<td ng-bind="order.product"></td>
+							<td ng-bind="order.quantity"></td>
+							<td>${{order.quantity * order.price}}</td>
+							<td ng-bind="order.created_at"></td>
+
+							<td><button class="btn btn-danger" ng-click="destroyOrder(order)">Delete</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
